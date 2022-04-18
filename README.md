@@ -9,6 +9,13 @@ Foram criadas duas branchs :
 - better-chat
 - debounce-color
 
-E a partir delas foram feitos pull request para a master para facilitar a verificação nas mudanças feitas nas duas aplicações
+E a partir delas foram feitos pull request para a master para facilitar a verificação nas mudanças feitas nas duas aplicações.
+
+As 3 mudanças feitas no chat foram:
+- Utilização de key no map dentro do component ChatMessageList
+- Utilização de Memo no component MyChatMessage
+- Utilização de Memo no component ChatMessage
+
+Na página color foi aplicado um debounce.
 
 
