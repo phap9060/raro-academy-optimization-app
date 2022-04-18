@@ -47,6 +47,7 @@ export const ChatProvider: React.FC = ({ children }) => {
     // util para testes.
     Array.from(new Array(100)).forEach(() => {
       const id = faker.datatype.number({ min: 0, max: 1 });
+      const keyId = faker.datatype.uuid();
       const autor = participantes[id];
       const texto = faker.lorem.sentence();
       adicionaMensagem(texto, autor);
@@ -67,6 +68,7 @@ export const ChatProvider: React.FC = ({ children }) => {
   const adicionaMensagem = (texto: string, autor: ParticipanteChat) => {
     const mensagem: Mensagem = {
       id: faker.datatype.uuid(),
+      keyId: faker.datatype.uuid(),
       texto,
       autor,
       data: new Date(),
