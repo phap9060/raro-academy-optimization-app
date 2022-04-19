@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useRef } from "react";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { useChat } from "../../contexts/chat.context";
 import { useScroll } from "../../hooks/useScroll";
 import { ChatMessage } from "../ChatMessage";
@@ -16,9 +16,21 @@ export const ChatMessageList = () => {
     updateEndOfScroll,
     getDistanceFromBottom
   } = useScroll(scrollRef);
+  const [search,setSearch] = useState("");
+
+  const debounce = useRef(0)
+  const handleSearch = () => {
+    setSearch(buscaMensagem)
+  }
+  useEffect(() => {
+    if (debounce.current) {
+      clearTimeout(debounce.current);
+    }
+    debounce.current = window.setTimeout(handleSearch,500)
+  },[])
 
   useEffect(() => {
-    scrollRef.current = document.querySelector('#mensagens');
+     scrollRef.current = document.querySelector('#mensagens');
     lerNovasMensagens();
   }, []);
 
@@ -50,7 +62,7 @@ export const ChatMessageList = () => {
       {
         [...mensagens]
         .reverse()
-        .filter(mensagem => mensagem.texto.match(new RegExp(buscaMensagem, 'i')))
+        .filter(mensagem => mensagem.texto.match(new RegExp(search, 'i')))
         .map(mensagem => (
           mensagem.autor.usuarioAtual ?
             <MyChatMessage mensagem={ mensagem } key={mensagem.keyId}  /> :

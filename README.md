@@ -15,6 +15,7 @@ As 3 mudanças feitas no chat foram:
 - Utilização de key no map dentro do component ChatMessageList
 - Utilização de Memo no component MyChatMessage
 - Utilização de Memo no component ChatMessage
+- Aplicação do Debounce nas pesquisas do chat
 
 Na página color foi aplicado um debounce.
 
